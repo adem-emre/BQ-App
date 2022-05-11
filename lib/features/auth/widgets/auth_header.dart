@@ -1,3 +1,4 @@
+import 'package:bq_app/core/extensions/context_ext.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/constant/app_colors.dart';
@@ -10,7 +11,7 @@ class AuthHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: const Size(double.infinity, 110) ,
+      size:  Size(double.infinity, context.setScaledHeight(0.15),) ,
       painter: AuthHeaderPainter(),
       
     );
@@ -41,7 +42,7 @@ class AuthHeaderPainter extends CustomPainter{
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    throw false;
+    return false;
   }
 
 }

@@ -1,3 +1,4 @@
+import 'package:bq_app/config/theme/app_theme.dart';
 import 'package:bq_app/features/auth/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'BQ',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.theme,
       home: const LoginView(),
     );
   }
