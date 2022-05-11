@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../core/constant/app_assets.dart';
+import '../../../core/constant/app_dimensions.dart';
 import '../../../core/constant/app_strings.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_text_form.dart';
@@ -28,7 +29,8 @@ class RegisterView extends StatelessWidget {
               const LottieBox(lottiePath: AppAssets.registerLottie,repeat: false,),
               
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                padding: AppDimensions.pagePadding,
+
                 child: Column(
                   children: [
                     CustomTextForm(hintText: AppStrings.nameStr),

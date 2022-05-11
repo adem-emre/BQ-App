@@ -1,4 +1,5 @@
 import 'package:bq_app/core/constant/app_assets.dart';
+import 'package:bq_app/core/constant/app_dimensions.dart';
 import 'package:bq_app/core/constant/app_strings.dart';
 import 'package:bq_app/core/extensions/context_ext.dart';
 import 'package:bq_app/core/widgets/custom_button.dart';
@@ -33,7 +34,7 @@ class LoginView extends StatelessWidget {
                     fontWeight: FontWeight.bold, fontSize: 27),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: AppDimensions.pagePadding,
                 child: Column(
                   children: [
                     CustomTextForm(hintText: AppStrings.mailStr),
