@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextForm extends StatelessWidget {
   final int? maxLines;
@@ -34,10 +35,11 @@ class CustomTextForm extends StatelessWidget {
           maxLength: maxLength,
           keyboardType: keyboardType,
           validator: validator,
+          inputFormatters: keyboardType == TextInputType.number
+              ? [FilteringTextInputFormatter.digitsOnly]
+              : null,
           decoration: InputDecoration(
-              prefixIcon: prefixIcon,
-              hintText: hintText,
-              counterText: ""),
+              prefixIcon: prefixIcon, hintText: hintText, counterText: ""),
         ),
       ),
     );

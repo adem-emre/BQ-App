@@ -5,30 +5,34 @@ import 'package:google_fonts/google_fonts.dart';
 class CustomButton extends StatelessWidget {
   final Color? buttonColor;
   final String label;
+  final EdgeInsets? padding;
   final void Function() onPressed;
   const CustomButton(
       {Key? key,
       required this.label,
       required this.onPressed,
-      this.buttonColor})
+      this.buttonColor, this.padding})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 27),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
+    return Padding(
+      padding: padding ?? const EdgeInsets.only(top: 12),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(horizontal: 27),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(6),
+          ),
+          elevation: 6,
+          primary: buttonColor ?? AppColors.defaultButtonColor,
         ),
-        elevation: 6,
-        primary: buttonColor ?? AppColors.defaultButtonColor,
-      ),
-      onPressed: onPressed,
-      child: Text(
-        label,
-        style:
-            GoogleFonts.inconsolata(fontSize: 16, fontWeight: FontWeight.bold),
+        onPressed: onPressed,
+        child: Text(
+          label,
+          style: GoogleFonts.inconsolata(
+              fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
