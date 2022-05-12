@@ -1,8 +1,13 @@
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
 
 class AppColors{
+  static const Color defaultBgColor=Colors.white;
   static const Color authHeaderColor = Color(0xFF06113C);
   static const Color defaultButtonColor = Color(0xFF000000);
   static const Color addButtonColor = Color(0xFF55AA59);
   static const Color editButtonColor = Color(0xFFF4C84B);
+  static const Color deleteButtonColor = Color(0xFFFF0000);
+  static const Color primaryColor = Color(0xFF000000);
+  static const Color authorTextColor = Color(0xFF808080);
+  static const Color bookSplashColor = Colors.blueAccent;
 }
