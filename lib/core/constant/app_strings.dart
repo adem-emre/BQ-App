@@ -25,5 +25,9 @@ class AppStrings {
   static const String pageNumberQuestStr = "Kaçıncı Sayfadasın?";
   static const String deleteStr = "Sil";
   static const String deleteBookQuest = "Bu kitabı silmek istediğine emin misin?";
+  static const String deleteQuoteQuest = "Bu alıntıyı silmek istediğine emin misin?";
   static const String cancelStr = "İptal";
+  static const String quoteStr = "Alıntı";
+
+
 }
