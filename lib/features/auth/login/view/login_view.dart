@@ -8,6 +8,7 @@ import 'package:bq_app/features/auth/register/register_view.dart';
 import 'package:bq_app/features/auth/reset_password/reset_password_view.dart';
 import 'package:bq_app/features/auth/widgets/auth_bottom_button.dart';
 import 'package:bq_app/features/auth/widgets/lottie_box.dart';
+import 'package:bq_app/features/books/books_home/view/books_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -37,7 +38,7 @@ class LoginView extends StatelessWidget {
                 padding: AppDimensions.pagePadding,
                 child: Column(
                   children: [
-                    CustomTextForm(hintText: AppStrings.mailStr),
+                    const CustomTextForm(hintText: AppStrings.mailStr),
                     const PasswordTextForm(),
                     Align(
                       alignment: Alignment.centerRight,
@@ -58,7 +59,14 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CustomButton(label: AppStrings.loginStr, onPressed: () {})
+                    CustomButton(
+                        label: AppStrings.loginStr,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const BooksHomeView()));
+                        })
                   ],
                 ),
               ),

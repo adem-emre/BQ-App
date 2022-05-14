@@ -6,6 +6,7 @@ import 'package:bq_app/core/widgets/custom_text_form.dart';
 import 'package:bq_app/core/widgets/delete_dialog.dart';
 import 'package:bq_app/features/books/add_book/view/add_book_view.dart';
 import 'package:bq_app/features/books/edit_book/edit_book_view.dart';
+import 'package:bq_app/features/quotes/quotes_list/view/quotes_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -42,12 +43,20 @@ class BooksHomeView extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return BookCard(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const QuotesListView()));
+                    },
                     onDelete: () {
                       showDialog(
                           context: context,
-                          builder: (context) => DeleteDialog(message: AppStrings.deleteBookQuest, onDelete: (){
-                            Navigator.pop(context);
-                          }));
+                          builder: (context) => DeleteDialog(
+                              message: AppStrings.deleteBookQuest,
+                              onDelete: () {
+                                Navigator.pop(context);
+                              }));
                     },
                     onEdit: () {
                       Navigator.push(
@@ -92,8 +101,6 @@ class BooksHomeView extends StatelessWidget {
             ));
   }
 }
-
-
 
 class _FloatingActionButton extends StatelessWidget {
   const _FloatingActionButton({
