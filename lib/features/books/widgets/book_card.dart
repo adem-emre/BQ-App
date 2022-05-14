@@ -1,4 +1,5 @@
 import 'package:bq_app/core/constant/app_colors.dart';
+import 'package:bq_app/core/style/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,11 +11,12 @@ class BookCard extends StatelessWidget {
   final void Function() onDelete;
   final void Function() onEdit;
   final void Function() onForward;
+  final Function() onTap;
   const BookCard({
     Key? key,
     required this.onDelete,
     required this.onEdit,
-    required this.onForward,
+    required this.onForward, required this.onTap,
   }) : super(key: key);
 
   @override
@@ -56,7 +58,9 @@ class BookCard extends StatelessWidget {
           customBorder: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-          onTap: () {},
+          onTap: () {
+            onTap();
+          },
           child: Container(
             padding: const EdgeInsets.all(9),
             height: 150,
@@ -86,8 +90,7 @@ class BookCard extends StatelessWidget {
                           Expanded(
                             child: Text(
                               "Martin Eden",
-                              style: GoogleFonts.inter(
-                                  fontSize: 18, fontWeight: FontWeight.w500),
+                              style: AppTextStyle.bookNameStyle,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -99,10 +102,7 @@ class BookCard extends StatelessWidget {
                       ),
                       Text(
                         "Jack London",
-                        style: GoogleFonts.inter(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.authorTextColor),
+                        style: AppTextStyle.authorStyle,
                       ),
                       const Spacer(),
                       Padding(

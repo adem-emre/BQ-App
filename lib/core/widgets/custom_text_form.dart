@@ -1,7 +1,9 @@
+import 'package:bq_app/core/style/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CustomTextForm extends StatelessWidget {
+  final TextStyle? textStyle;
   final int? maxLines;
   final bool passwordMode;
   final int? maxLength;
@@ -20,7 +22,7 @@ class CustomTextForm extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.maxLength,
-    this.padding,
+    this.padding, this.textStyle,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class CustomTextForm extends StatelessWidget {
       child: Material(
         elevation: 4,
         child: TextFormField(
+          style: textStyle,
           maxLines: maxLines,
           obscureText: passwordMode,
           maxLength: maxLength,
@@ -39,7 +42,9 @@ class CustomTextForm extends StatelessWidget {
               ? [FilteringTextInputFormatter.digitsOnly]
               : null,
           decoration: InputDecoration(
-              prefixIcon: prefixIcon, hintText: hintText, counterText: ""),
+              prefixIcon: prefixIcon,
+              hintText: hintText,
+              counterText: ""),
         ),
       ),
     );
