@@ -6,8 +6,9 @@ class PasswordTextForm extends StatefulWidget {
   final EdgeInsetsGeometry? padding;
   final String hintText = AppStrings.passwordStr;
   final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
 
-  const PasswordTextForm({Key? key, this.padding, this.validator})
+  const PasswordTextForm({Key? key, this.padding, this.validator, this.onSaved})
       : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class _PasswordTextFormState extends State<PasswordTextForm> {
       child: Material(
         elevation: 4,
         child: TextFormField(
+          onSaved: widget.onSaved,
           obscureText: passwordMode,
           validator: widget.validator,
           decoration: InputDecoration(

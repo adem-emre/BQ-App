@@ -12,6 +12,7 @@ class CustomTextForm extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final EdgeInsetsGeometry? padding;
+  final void Function(String?)? onSaved;
 
   const CustomTextForm({
     this.maxLines = 1,
@@ -22,7 +23,7 @@ class CustomTextForm extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.maxLength,
-    this.padding, this.textStyle,
+    this.padding, this.textStyle, this.onSaved,
   }) : super(key: key);
 
   @override
@@ -32,6 +33,8 @@ class CustomTextForm extends StatelessWidget {
       child: Material(
         elevation: 4,
         child: TextFormField(
+          
+          onSaved: onSaved,
           style: textStyle,
           maxLines: maxLines,
           obscureText: passwordMode,
