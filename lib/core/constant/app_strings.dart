@@ -28,6 +28,14 @@ class AppStrings {
   static const String deleteQuoteQuest = "Bu alıntıyı silmek istediğine emin misin?";
   static const String cancelStr = "İptal";
   static const String quoteStr = "Alıntı";
+  static const String invalidMail = "Geçersiz Mail";
+  static const String canNotBeEmpty = "Bu alan boş bırakılamaz";
+  static const String invalidPassword = "Şifre en az 6 karakterden oluşmalıdır";
+
+  
+  static const String registerSuccessMsg = "Kayıt işlemi başarıyla tamamlandı";
+
+  static const String resetPasswordMailSentMsg = "Şifre sıfırlama maili gönderildi";
 
 
 }

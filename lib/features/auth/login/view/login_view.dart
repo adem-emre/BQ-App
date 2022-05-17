@@ -35,7 +35,7 @@ class LoginView extends StatelessWidget {
                         builder: (context) => const BooksHomeView()));
               } else if (state is LoginError) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    duration: const Duration(milliseconds: 500),
+                    duration: AppDimensions.snackBarDuration,
                     content: Text(state.message)));
               }
             },
@@ -97,7 +97,7 @@ class LoginView extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ResetPasswordView()));
+                          builder: (context) =>  ResetPasswordView()));
                 },
                 child: Text(
                   AppStrings.forgotPasswordStr,
@@ -131,7 +131,7 @@ class LoginView extends StatelessWidget {
         label: AppStrings.noAccountStr,
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const RegisterView()));
+              MaterialPageRoute(builder: (context) =>  RegisterView()));
         });
   }
 }
