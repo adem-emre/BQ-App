@@ -20,14 +20,17 @@ dependencies:
   # font
   google_fonts: ^2.3.2
   font_awesome_flutter: ^10.1.0
+  # state management
   flutter_bloc: ^8.0.1
-  equatable: ^2.0.3
   # firebase
   firebase_core: ^1.17.0
   firebase_auth: ^3.3.18
   cloud_firestore: ^3.1.15
+  firebase_storage: ^10.2.16
   # utils
   email_validator: ^2.0.1
+  image_picker: ^0.8.5+3
+  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_test:
