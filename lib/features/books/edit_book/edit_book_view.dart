@@ -22,7 +22,12 @@ class EditBookView extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 15),
-              const ImageButton(),
+               ImageButton(
+                 imagePath: null,
+                 onTap: (){
+                   return Future.value(null);
+                 },
+               ),
               const CustomTextForm(hintText: AppStrings.bookNameStr),
               const CustomTextForm(hintText: AppStrings.authorStr),
               const CustomTextForm(

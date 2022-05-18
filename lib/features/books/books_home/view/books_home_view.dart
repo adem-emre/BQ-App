@@ -124,7 +124,7 @@ class _FloatingActionButton extends StatelessWidget {
         ),
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddBookView()));
+              MaterialPageRoute(builder: (context) =>  AddBookView()));
         });
   }
 }
