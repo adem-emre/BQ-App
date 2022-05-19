@@ -13,4 +13,6 @@ class AppColors {
   static const Color quoteContainerColor = Color(0xFFF5F5F5);
   static const Color twitterColor = Color(0xFF1DA1F2);
   static const Color addQuoteColor = Color(0xFF06113C);
+  static final Color shimmerBaseColor = Colors.grey[400]!;
+  static final Color shimmerHighlightColor = Colors.grey[300]!;
 }
