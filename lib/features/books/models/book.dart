@@ -7,6 +7,7 @@ class Book {
   final String? imageUrl;
   final int pages;
   final int readPages;
+  final Timestamp createdAt;
 
 
   Book(
@@ -15,7 +16,8 @@ class Book {
       required this.title,
       required this.author,
       required this.pages,
-      required this.readPages});
+      required this.readPages,
+      required this.createdAt});
 
   factory Book.fromDocumentSnapshot(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
@@ -26,6 +28,7 @@ class Book {
       imageUrl: data['imageUrl'],
       pages: data['pages'],
       readPages: data['readPages'],
+      createdAt: data['createdAt'],
     );
   }
 
@@ -36,6 +39,7 @@ class Book {
       'imageUrl': imageUrl,
       'pages': pages,
       'readPages': readPages,
+      'createdAt': createdAt,
     };
   }
 
@@ -46,7 +50,7 @@ class Book {
     String? imageUrl,
     int? pages,
     int? readPages,
-    Timestamp? date,
+    Timestamp? createdAt,
   }) {
     return Book(
       id: id ?? this.id,
@@ -55,6 +59,7 @@ class Book {
       imageUrl: imageUrl ?? this.imageUrl,
       pages: pages ?? this.pages,
       readPages: readPages ?? this.readPages,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 }
