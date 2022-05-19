@@ -56,7 +56,7 @@ class _ImageButtonState extends State<ImageButton> {
     if (filePath != null) {
       return FileImage(File(filePath!));
     } else if (widget.imagePath != null) {
-      return AssetImage(widget.imagePath!);
+      return NetworkImage(widget.imagePath!);
     } else {
       return const AssetImage(AppAssets.defaultCoverImg);
     }
