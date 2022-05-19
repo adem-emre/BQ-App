@@ -41,7 +41,7 @@ class _BookForm extends StatelessWidget {
       child: BlocListener<AddBookCubit, AddBookState>(
         listener: (context, state) {
           if (state is AddBookSuccess) {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
           } else if (state is AddBookError) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               duration: AppDimensions.snackBarDuration,

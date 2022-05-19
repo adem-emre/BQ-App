@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:bq_app/core/data/firestore_helper.dart';
 import 'package:bq_app/features/books/models/book.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../helper/storage_helper.dart';
@@ -31,11 +32,9 @@ class AddBookCubit extends Cubit<AddBookState> {
 
   Future<void> addBook(String userId) async {
     try {
-      final String? imageName = bookImageFile?.path.split("/").last;
       String? imageUrl;
-      if (imageName != null) {
-        imageUrl = await _storageHelper.uploadFile(
-            "$userId/$imageName", bookImageFile!);
+      if (bookImageFile != null) {
+        imageUrl = await _storageHelper.uploadFile(userId, bookImageFile!);
       }
 
       await _firestoreHelper.addDocument(
@@ -45,7 +44,8 @@ class AddBookCubit extends Cubit<AddBookState> {
                   author: author!,
                   pages: pages!,
                   readPages: readPages ?? 0,
-                  imageUrl: imageUrl)
+                  imageUrl: imageUrl,
+                  createdAt: Timestamp.now())
               .toMap());
 
       emit(AddBookSuccess());
