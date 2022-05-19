@@ -17,14 +17,27 @@ class StorageHelper {
     return null;
   }
 
-  Future<String> uploadFile(String filePath, File file) async {
+  Future<String> uploadFile(String userId, File file) async {
     try {
-      Reference reference = _firebaseStorage.ref().child('images/$filePath');
+      final String imageName = file.path.split("/").last;
+      Reference reference =
+          _firebaseStorage.ref().child('images/$userId/$imageName');
       UploadTask uploadTask = reference.putFile(file);
 
       String imageUrl = await (await uploadTask).ref.getDownloadURL();
 
       return imageUrl;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> editFile(String bookUrl, File file) async {
+    try {
+      Reference reference = _firebaseStorage.refFromURL(bookUrl);
+      UploadTask uploadTask = reference.putFile(file);
+
+      await uploadTask;
     } catch (e) {
       throw Exception(e.toString());
     }

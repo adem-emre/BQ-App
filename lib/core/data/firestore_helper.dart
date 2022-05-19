@@ -18,9 +18,15 @@ class FirestoreHelper {
   }
 
 
-  Future<List<DocumentSnapshot>> fetchDocuments(String collection) async {
-    var documents = await _firestore.collection(collection).get();
+  Future<List<DocumentSnapshot>> fetchDocuments(String collection,String field) async {
+    var documents = await _firestore.collection(collection).orderBy(field,descending: true).get();
     return documents.docs;
+  }
+
+ 
+
+  Future<void> updateDocument(String document, Map<String, dynamic> data) async {
+    await _firestore.doc(document).update(data);
   }
 
 
