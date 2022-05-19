@@ -18,13 +18,14 @@ class Book {
       required this.readPages});
 
   factory Book.fromDocumentSnapshot(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>;
     return Book(
       id: doc.id,
-      title: doc['title'],
-      author: doc['author'],
-      imageUrl: doc['imageUrl'],
-      pages: doc['pages'],
-      readPages: doc['readPages'],
+      title: data['title'],
+      author: data['author'],
+      imageUrl: data['imageUrl'],
+      pages: data['pages'],
+      readPages: data['readPages'],
     );
   }
 

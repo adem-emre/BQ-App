@@ -1,3 +1,4 @@
+import 'package:bq_app/core/constant/app_assets.dart';
 import 'package:bq_app/core/constant/app_colors.dart';
 import 'package:bq_app/core/style/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -5,9 +6,11 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../models/book.dart';
 import 'book_slide_button.dart';
 
 class BookCard extends StatelessWidget {
+  final Book book;
   final void Function() onDelete;
   final void Function() onEdit;
   final void Function() onForward;
@@ -16,7 +19,9 @@ class BookCard extends StatelessWidget {
     Key? key,
     required this.onDelete,
     required this.onEdit,
-    required this.onForward, required this.onTap,
+    required this.onForward,
+    required this.onTap,
+    required this.book,
   }) : super(key: key);
 
   @override
@@ -73,8 +78,13 @@ class BookCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black, width: 0.5),
                       ),
-                      child: Image.network(
-                          "https://i.dr.com.tr/cache/600x600-0/originals/0000000608697-1.jpg"),
+                      child: book.imageUrl == null
+                          ? Image.asset(AppAssets.defaultCoverImg,
+                              fit: BoxFit.cover)
+                          : Image.network(
+                              book.imageUrl!,
+                              fit: BoxFit.cover,
+                            ),
                     )),
                 const SizedBox(
                   width: 8,
@@ -82,27 +92,32 @@ class BookCard extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Text(
-                              "Martin Eden",
-                              style: AppTextStyle.bookNameStyle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  book.title,
+                                  style: AppTextStyle.bookNameStyle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  book.author,
+                                  maxLines: 1,
+                                  style: AppTextStyle.authorStyle,
+                                ),
+                              ],
                             ),
                           ),
                           InkWell(
                               onTap: onForward,
                               child: const Icon(Icons.fast_forward))
                         ],
-                      ),
-                      Text(
-                        "Jack London",
-                        style: AppTextStyle.authorStyle,
                       ),
                       const Spacer(),
                       Padding(
@@ -111,7 +126,7 @@ class BookCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
-                              "${240}/${300}",
+                              "${book.readPages}/${book.pages}",
                               style: GoogleFonts.inter(fontSize: 10),
                             ),
                             LinearPercentIndicator(
@@ -120,7 +135,7 @@ class BookCard extends StatelessWidget {
                               lineHeight: 7,
                               animationDuration: 1000,
                               progressColor: Colors.green,
-                              percent: 0.8,
+                              percent: (book.readPages / book.pages),
                               barRadius: const Radius.circular(10),
                             ),
                           ],
