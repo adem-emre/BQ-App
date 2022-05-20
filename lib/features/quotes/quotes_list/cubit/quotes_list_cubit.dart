@@ -13,13 +13,9 @@ class QuotesListCubit extends Cubit<QuotesListState> {
 
   late Book selectedBook;
 
-  // set selectedBook
-
   void setSelectedBook(Book book) {
     selectedBook = book;
   }
-
-  // fetch quotes
 
   void fetchQuotes(String userId) async {
     emit(QoutesListLoading());
@@ -31,6 +27,16 @@ class QuotesListCubit extends Cubit<QuotesListState> {
       emit(QuotelistLoaded(quotes: quoteList));
     } catch (e) {
       emit(QuotesListError(message: e.toString()));
+    }
+  }
+
+  Future<void> deleteQuote(String userId, Quote quote) async {
+    try {
+      await _firestoreHelper.deleteDocument(
+          "users/$userId/books/${selectedBook.id}/quotes/${quote.id}");
+      emit(DeleteQuoteSuccess());
+    } catch (e) {
+      emit(DeleteQuoteError(message: e.toString()));
     }
   }
 }

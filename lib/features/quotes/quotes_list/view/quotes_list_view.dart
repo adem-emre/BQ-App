@@ -32,8 +32,24 @@ class QuotesListView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const QuoteListHeader(),
-                  Expanded(child: BlocBuilder<QuotesListCubit, QuotesListState>(
+                  Expanded(
+                      child: BlocConsumer<QuotesListCubit, QuotesListState>(
+                    listener: (context, state) {
+                      if (state is DeleteQuoteSuccess) {
+
+                        context
+                            .read<QuotesListCubit>()
+                            .fetchQuotes(context.read<AuthCubit>().getUserId!);
+                      } else if (state is DeleteQuoteError) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(state.message),
+                          ),
+                        );
+                      }
+                    },
                     builder: (context, state) {
+
                       if (state is QuotelistLoaded) {
                         if (state.quotes.isEmpty) {
                           return const Center(
@@ -56,33 +72,47 @@ class QuotesListView extends StatelessWidget {
                                         builder: (context) => DeleteDialog(
                                             message:
                                                 AppStrings.deleteQuoteQuest,
-                                            onDelete: () {
-                                              Navigator.pop(context);
+                                            onDelete: () async {
+                                              await context
+                                                  .read<QuotesListCubit>()
+                                                  .deleteQuote(
+                                                      context
+                                                          .read<AuthCubit>()
+                                                          .getUserId!,
+                                                      currentQuote);
+
+                                              Navigator.of(context).pop();
                                             }));
                                   },
-                                  onEdit: ()async {
-                                   bool? isSuccess = await showGeneralDialog<bool?>(
-                                        context: context,
-                                        pageBuilder: (context, _, __) {
-                                          return  EditQuoteView(selectedQuote: currentQuote,);
-                                        });
+                                  onEdit: () async {
+                                    bool? isSuccess =
+                                        await showGeneralDialog<bool?>(
+                                            context: context,
+                                            pageBuilder: (context, _, __) {
+                                              return EditQuoteView(
+                                                selectedQuote: currentQuote,
+                                              );
+                                            });
 
-                                        if(isSuccess == true){
-                                          context.read<QuotesListCubit>().fetchQuotes(context.read<AuthCubit>().getUserId!);
-                                        }
+                                    if (isSuccess == true) {
+                                      context
+                                          .read<QuotesListCubit>()
+                                          .fetchQuotes(context
+                                              .read<AuthCubit>()
+                                              .getUserId!);
+                                    }
                                   },
                                   onShare: () {},
                                   quote: currentQuote.quote);
                             });
-                      } else if (state is QoutesListLoading) {
-                        return const Center(
-                            child: CircularProgressIndicator(
-                          color: AppColors.primaryColor,
-                        ));
-                      } else {
-                        state as QuotesListError;
+                      } else if (state is QuotesListError) {
                         return Center(child: Text(state.message));
                       }
+
+                      return const Center(
+                          child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ));
                     },
                   ))
                 ],
@@ -104,15 +134,16 @@ class _FloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () async{
+      onPressed: () async {
         bool? isSuccessful = await showGeneralDialog<bool?>(
             context: context,
             pageBuilder: (context, _, __) {
               return const AddQuoteView();
             });
         if (isSuccessful == true) {
-          context.read<QuotesListCubit>().fetchQuotes(
-              context.read<AuthCubit>().getUserId!);
+          context
+              .read<QuotesListCubit>()
+              .fetchQuotes(context.read<AuthCubit>().getUserId!);
         }
       },
       child: const Icon(

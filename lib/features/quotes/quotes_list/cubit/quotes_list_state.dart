@@ -28,3 +28,11 @@ class QuotesListError extends QuotesListState {
   @override
   List<Object> get props => [message];
 }
+
+class DeleteQuoteSuccess extends QuotesListState{}
+
+class DeleteQuoteError extends QuotesListState{
+  final String message;
+
+  const DeleteQuoteError({required this.message});
+}
