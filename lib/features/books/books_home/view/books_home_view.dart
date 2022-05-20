@@ -9,6 +9,7 @@ import 'package:bq_app/features/books/add_book/view/add_book_view.dart';
 import 'package:bq_app/features/books/books_home/cubit/books_home_cubit.dart';
 import 'package:bq_app/features/books/edit_book/view/edit_book_view.dart';
 import 'package:bq_app/features/books/widgets/shimmer_book_card.dart';
+import 'package:bq_app/features/quotes/quotes_list/cubit/quotes_list_cubit.dart';
 import 'package:bq_app/features/quotes/quotes_list/view/quotes_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -64,6 +65,8 @@ class BooksHomeView extends StatelessWidget {
                             return BookCard(
                               book: state.books[index],
                               onTap: () async {
+                                context.read<QuotesListCubit>().setSelectedBook(
+                                    state.books[index]);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(

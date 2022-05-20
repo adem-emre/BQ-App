@@ -41,4 +41,7 @@ class AppStrings {
 
   static const String invalidReadPageCount =
       "Okunan sayfa sayısı, kitabın sayfa sayısından büyük olamaz";
+
+  
+  static const String noQuotes = "Henüz bir alıntı eklenmemiş";
 }
