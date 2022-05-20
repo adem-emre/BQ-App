@@ -1,5 +1,7 @@
 part of 'books_home_cubit.dart';
 
+
+
 abstract class BooksHomeState extends Equatable {
   const BooksHomeState();
 
@@ -27,4 +29,22 @@ class BooksHomeError extends BooksHomeState {
 
   @override
   List<Object> get props => [message];
+}
+
+class ReadPagesEditSuccess extends BooksHomeState {}
+
+class ReadPagesEditError extends BooksHomeState {
+  final String message;
+
+  const ReadPagesEditError({required this.message});
+
+
+}
+
+class DeleteBookSuccess extends BooksHomeState {}
+
+class DeleteBookError extends BooksHomeState {
+  final String message;
+
+  const DeleteBookError({required this.message});
 }

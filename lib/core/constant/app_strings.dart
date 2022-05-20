@@ -24,18 +24,21 @@ class AppStrings {
   static const String pageNumberStr = "Sayfa Numarası";
   static const String pageNumberQuestStr = "Kaçıncı Sayfadasın?";
   static const String deleteStr = "Sil";
-  static const String deleteBookQuest = "Bu kitabı silmek istediğine emin misin?";
-  static const String deleteQuoteQuest = "Bu alıntıyı silmek istediğine emin misin?";
+  static const String deleteBookQuest =
+      "Bu kitabı silmek istediğine emin misin?";
+  static const String deleteQuoteQuest =
+      "Bu alıntıyı silmek istediğine emin misin?";
   static const String cancelStr = "İptal";
   static const String quoteStr = "Alıntı";
   static const String invalidMail = "Geçersiz Mail";
   static const String canNotBeEmpty = "Bu alan boş bırakılamaz";
   static const String invalidPassword = "Şifre en az 6 karakterden oluşmalıdır";
 
-  
   static const String registerSuccessMsg = "Kayıt işlemi başarıyla tamamlandı";
 
-  static const String resetPasswordMailSentMsg = "Şifre sıfırlama maili gönderildi";
+  static const String resetPasswordMailSentMsg =
+      "Şifre sıfırlama maili gönderildi";
 
-
+  static const String invalidReadPageCount =
+      "Okunan sayfa sayısı, kitabın sayfa sayısından büyük olamaz";
 }

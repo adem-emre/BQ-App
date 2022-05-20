@@ -13,8 +13,8 @@ class FirestoreHelper {
     return documentReference.id;
   }
 
-  Future<void> deleteDocument(String collection, String document) async {
-    await _firestore.collection(collection).doc(document).delete();
+  Future<void> deleteDocument(String document) async {
+    await _firestore.doc(document).delete();
   }
 
 

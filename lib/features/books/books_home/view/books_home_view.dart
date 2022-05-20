@@ -7,14 +7,20 @@ import 'package:bq_app/core/widgets/custom_text_form.dart';
 import 'package:bq_app/core/widgets/delete_dialog.dart';
 import 'package:bq_app/features/books/add_book/view/add_book_view.dart';
 import 'package:bq_app/features/books/books_home/cubit/books_home_cubit.dart';
-import 'package:bq_app/features/books/edit_book/edit_book_view.dart';
+import 'package:bq_app/features/books/edit_book/view/edit_book_view.dart';
 import 'package:bq_app/features/books/widgets/shimmer_book_card.dart';
 import 'package:bq_app/features/quotes/quotes_list/view/quotes_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../models/book.dart';
 import '../../widgets/book_card.dart';
+
+part 'parts/page_number_dialog.dart';
+part 'parts/shimmer_loading.dart';
+part 'parts/add_book_button.dart';
+part 'parts/delete_dialog.dart';
 
 class BooksHomeView extends StatelessWidget {
   const BooksHomeView({Key? key}) : super(key: key);
@@ -22,8 +28,9 @@ class BooksHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          BooksHomeCubit()..fetchBooks(context.read<AuthCubit>().getUserId!),
+      create: (context) => BooksHomeCubit()
+        ..fetchBooks(context.read<AuthCubit>().getUserId!,
+            isFirstloading: true),
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(),
@@ -52,9 +59,11 @@ class BooksHomeView extends StatelessWidget {
                       return ListView.builder(
                           itemCount: state.books.length,
                           itemBuilder: (context, index) {
+                            BooksHomeCubit booksHomeCubit =
+                                context.read<BooksHomeCubit>();
                             return BookCard(
                               book: state.books[index],
-                              onTap: () {
+                              onTap: () async {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -62,23 +71,25 @@ class BooksHomeView extends StatelessWidget {
                                             const QuotesListView()));
                               },
                               onDelete: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => DeleteDialog(
-                                        message: AppStrings.deleteBookQuest,
-                                        onDelete: () {
-                                          Navigator.pop(context);
-                                        }));
+                                _deleteDialog(
+                                    context, booksHomeCubit, state, index);
                               },
-                              onEdit: () {
-                                Navigator.push(
+                              onEdit: () async {
+                                bool? itemEdited = await Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            const EditBookView()));
+                                        builder: (context) => EditBookView(
+                                              selectedBook: state.books[index],
+                                            )));
+
+                                if (itemEdited == true) {
+                                  context.read<BooksHomeCubit>().fetchBooks(
+                                      context.read<AuthCubit>().getUserId!);
+                                }
                               },
                               onForward: () {
-                                _pageNumberDialog(context);
+                                _pageNumberDialog(context, state.books[index],
+                                    booksHomeCubit);
                               },
                             );
                           });
@@ -95,71 +106,5 @@ class BooksHomeView extends StatelessWidget {
         );
       }),
     );
-  }
-
-  Future<dynamic> _pageNumberDialog(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Text(AppStrings.pageNumberQuestStr),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const CustomTextForm(
-                    padding: EdgeInsets.zero,
-                    hintText: AppStrings.pageNumberStr,
-                    keyboardType: TextInputType.number,
-                  ),
-                  CustomButton(
-                    label: AppStrings.saveStr,
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
-              ),
-            ));
-  }
-}
-
-class _ShimmerLoading extends StatelessWidget {
-  const _ShimmerLoading({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return const ShimmerBookCard();
-        });
-  }
-}
-
-class _FloatingActionButton extends StatelessWidget {
-  const _FloatingActionButton({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton(
-        splashColor: AppColors.bookSplashColor,
-        child: const Icon(
-          Icons.add,
-          size: 36,
-        ),
-        backgroundColor: Colors.white,
-        shape: const CircleBorder(
-          side: BorderSide(
-            color: Colors.black,
-            width: 1,
-          ),
-        ),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const AddBookView()));
-        });
   }
 }
