@@ -76,7 +76,7 @@ class _QuoteForm extends StatelessWidget {
                 child: CustomButton(
                   label: AppStrings.saveStr,
                   buttonColor: AppColors.addButtonColor,
-                  onPressed: () async{
+                  onFuture: () async{
                     if (_quoteFormKey.currentState!.validate()) {
                       _quoteFormKey.currentState!.save();
                         await context.read<AddQuoteCubit>().addQuote(

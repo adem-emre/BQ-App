@@ -60,12 +60,16 @@ class QuotesListView extends StatelessWidget {
                                               Navigator.pop(context);
                                             }));
                                   },
-                                  onEdit: () {
-                                    showGeneralDialog(
+                                  onEdit: ()async {
+                                   bool? isSuccess = await showGeneralDialog<bool?>(
                                         context: context,
                                         pageBuilder: (context, _, __) {
-                                          return const EditQuoteView();
+                                          return  EditQuoteView(selectedQuote: currentQuote,);
                                         });
+
+                                        if(isSuccess == true){
+                                          context.read<QuotesListCubit>().fetchQuotes(context.read<AuthCubit>().getUserId!);
+                                        }
                                   },
                                   onShare: () {},
                                   quote: currentQuote.quote);

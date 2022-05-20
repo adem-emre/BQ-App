@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Quote{
+class Quote {
   final String? id;
   final String quote;
   final Timestamp timestamp;
@@ -25,4 +25,16 @@ class Quote{
   }
 
   
+
+  Quote copyWith({
+    String? id,
+    String? quote,
+    Timestamp? timestamp,
+  }) {
+    return Quote(
+      id: id ?? this.id,
+      quote: quote ?? this.quote,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
 }
