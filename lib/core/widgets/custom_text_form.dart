@@ -46,6 +46,7 @@ class CustomTextForm extends StatelessWidget {
               ? [FilteringTextInputFormatter.digitsOnly]
               : null,
           decoration: InputDecoration(
+            errorMaxLines: 2,
               prefixIcon: prefixIcon,
               hintText: hintText,
               counterText: ""),
