@@ -1,6 +1,7 @@
 class AppStrings {
   static const String welcomeStr = "Hoşgeldin";
   static const String loginStr = "Giriş";
+  static const String logoutStr = "Çıkış Yap";
   static const String mailStr = "Mail";
   static const String passwordStr = "Şifre";
   static const String registerStr = "Kayıt Ol";
@@ -46,6 +47,6 @@ class AppStrings {
 
   static const String copiedToClipboard = "Panoya Kopyalandı";
 
-  static const String bqHashtag =
-      "BQ";
+  static const String bqHashtag = "BQ";
+  static const String appName = "BQ";
 }

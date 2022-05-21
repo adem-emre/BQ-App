@@ -34,6 +34,14 @@ class AuthService {
     await _auth.signOut();
   }
 
+  Future<UserModel> getUser() async {
+    var user = _auth.currentUser!;
+
+    var userDocument = await _firestore.collection("users").doc(user.uid).get();
+    UserModel userModel = UserModel.fromMap(userDocument.data()!);
+    return userModel;
+  }
+
   Future<void> resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }

@@ -5,6 +5,7 @@ import 'package:bq_app/core/constant/app_strings.dart';
 import 'package:bq_app/core/widgets/custom_button.dart';
 import 'package:bq_app/core/widgets/custom_text_form.dart';
 import 'package:bq_app/core/widgets/delete_dialog.dart';
+import 'package:bq_app/features/auth/login/view/login_view.dart';
 import 'package:bq_app/features/books/add_book/view/add_book_view.dart';
 import 'package:bq_app/features/books/books_home/cubit/books_home_cubit.dart';
 import 'package:bq_app/features/books/edit_book/view/edit_book_view.dart';
@@ -22,12 +23,15 @@ part 'parts/page_number_dialog.dart';
 part 'parts/shimmer_loading.dart';
 part 'parts/add_book_button.dart';
 part 'parts/delete_dialog.dart';
+part 'parts/drawer.dart';
 
 class BooksHomeView extends StatelessWidget {
   const BooksHomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    context.read<AuthCubit>().setUserInfo();
+
     return BlocProvider(
       create: (context) => BooksHomeCubit()
         ..fetchBooks(context.read<AuthCubit>().getUserId!,
@@ -35,7 +39,7 @@ class BooksHomeView extends StatelessWidget {
       child: Builder(builder: (context) {
         return Scaffold(
           appBar: AppBar(),
-          drawer: const Drawer(),
+          drawer: const _Drawer(),
           floatingActionButton: const _FloatingActionButton(),
           body: Padding(
             padding: AppDimensions.pagePadding,
@@ -65,8 +69,9 @@ class BooksHomeView extends StatelessWidget {
                             return BookCard(
                               book: state.books[index],
                               onTap: () async {
-                                context.read<QuotesListCubit>().setSelectedBook(
-                                    state.books[index]);
+                                context
+                                    .read<QuotesListCubit>()
+                                    .setSelectedBook(state.books[index]);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -111,3 +116,4 @@ class BooksHomeView extends StatelessWidget {
     );
   }
 }
+
