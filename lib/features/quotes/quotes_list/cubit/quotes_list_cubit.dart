@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:bq_app/core/constant/app_strings.dart';
 import 'package:bq_app/core/data/firestore_helper.dart';
 import 'package:equatable/equatable.dart';
+import 'package:social_share/social_share.dart';
 
 import '../../../books/models/book.dart';
 import '../../models/quote.dart';
@@ -38,5 +40,12 @@ class QuotesListCubit extends Cubit<QuotesListState> {
     } catch (e) {
       emit(DeleteQuoteError(message: e.toString()));
     }
+  }
+
+ 
+  Future<void> shareTwitter(String quote) async {
+    await SocialShare.shareTwitter(
+        "$quote\n\n - ${selectedBook.title} (${selectedBook.author})",
+        hashtags: [AppStrings.bqHashtag]);
   }
 }

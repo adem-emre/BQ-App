@@ -65,10 +65,11 @@ class QuotesListView extends StatelessWidget {
                             itemBuilder: (context, index) {
                               var currentQuote = state.quotes[index];
                               return QuoteCard(
-                                  onTap: () async{
+                                  onTap: () async {
                                     await Clipboard.setData(ClipboardData(
                                         text: currentQuote.quote));
-                                        Fluttertoast.showToast(msg: AppStrings.copiedToClipboard);
+                                    Fluttertoast.showToast(
+                                        msg: AppStrings.copiedToClipboard);
                                   },
                                   onDelete: () {
                                     showDialog(
@@ -106,7 +107,11 @@ class QuotesListView extends StatelessWidget {
                                               .getUserId!);
                                     }
                                   },
-                                  onShare: () {},
+                                  onShare: () async {
+                                    await context
+                                        .read<QuotesListCubit>()
+                                        .shareTwitter(currentQuote.quote);
+                                  },
                                   quote: currentQuote.quote);
                             });
                       } else if (state is QuotesListError) {

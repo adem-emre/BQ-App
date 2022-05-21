@@ -45,4 +45,7 @@ class AppStrings {
   static const String noQuotes = "Henüz bir alıntı eklenmemiş";
 
   static const String copiedToClipboard = "Panoya Kopyalandı";
+
+  static const String bqHashtag =
+      "BQ";
 }
