@@ -5,7 +5,9 @@ import 'package:bq_app/features/quotes/edit_quote/view/edit_quote_view.dart';
 import 'package:bq_app/features/quotes/quotes_list/cubit/quotes_list_cubit.dart';
 import 'package:bq_app/features/quotes/widgets/quote_back_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../../../core/auth/cubit/auth_cubit.dart';
 import '../../../../core/constant/app_strings.dart';
@@ -36,7 +38,6 @@ class QuotesListView extends StatelessWidget {
                       child: BlocConsumer<QuotesListCubit, QuotesListState>(
                     listener: (context, state) {
                       if (state is DeleteQuoteSuccess) {
-
                         context
                             .read<QuotesListCubit>()
                             .fetchQuotes(context.read<AuthCubit>().getUserId!);
@@ -49,7 +50,6 @@ class QuotesListView extends StatelessWidget {
                       }
                     },
                     builder: (context, state) {
-
                       if (state is QuotelistLoaded) {
                         if (state.quotes.isEmpty) {
                           return const Center(
@@ -65,7 +65,11 @@ class QuotesListView extends StatelessWidget {
                             itemBuilder: (context, index) {
                               var currentQuote = state.quotes[index];
                               return QuoteCard(
-                                  onTap: () {},
+                                  onTap: () async{
+                                    await Clipboard.setData(ClipboardData(
+                                        text: currentQuote.quote));
+                                        Fluttertoast.showToast(msg: AppStrings.copiedToClipboard);
+                                  },
                                   onDelete: () {
                                     showDialog(
                                         context: context,
