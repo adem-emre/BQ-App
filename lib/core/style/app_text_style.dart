@@ -14,4 +14,5 @@ class AppTextStyle{
   static final quoteStyle = GoogleFonts.indieFlower(
                     fontSize: 16,
                   );
+  
 }

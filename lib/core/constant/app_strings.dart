@@ -49,4 +49,5 @@ class AppStrings {
 
   static const String bqHashtag = "BQ";
   static const String appName = "BQ";
+  static const String splashTextFamily = "Tapestry";
 }

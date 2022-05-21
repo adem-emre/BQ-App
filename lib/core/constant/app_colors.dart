@@ -15,4 +15,6 @@ class AppColors {
   static const Color addQuoteColor = Color(0xFF06113C);
   static final Color shimmerBaseColor = Colors.grey[400]!;
   static final Color shimmerHighlightColor = Colors.grey[300]!;
+  static const Color splashBgColor = Color(0xFF06113C);
+  static const Color splashTextColor = Color(0xFFFFFFFF);
 }
