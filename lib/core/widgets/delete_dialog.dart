@@ -6,7 +6,7 @@ import 'custom_button.dart';
 
 class DeleteDialog extends StatelessWidget {
   final String message;
-  final void Function() onDelete;
+  final Future<void> Function() onDelete;
   const DeleteDialog({
     Key? key, required this.message, required this.onDelete,
   }) : super(key: key);
@@ -31,7 +31,7 @@ class DeleteDialog extends StatelessWidget {
             CustomButton(
                 padding: EdgeInsets.zero,
                 label: AppStrings.deleteStr,
-                onPressed: onDelete)
+                onFuture: onDelete)
           ],
         );
   }

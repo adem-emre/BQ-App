@@ -32,12 +32,22 @@ class StorageHelper {
     }
   }
 
-  Future<void> editFile(String bookUrl, File file) async {
+  Future<String> editFile(String bookUrl, File file) async {
     try {
       Reference reference = _firebaseStorage.refFromURL(bookUrl);
       UploadTask uploadTask = reference.putFile(file);
+      String imageUrl = await (await uploadTask).ref.getDownloadURL();
 
-      await uploadTask;
+      return imageUrl;
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
+
+  Future<void> deleteFile(String bookUrl) async {
+    try {
+      Reference reference = _firebaseStorage.refFromURL(bookUrl);
+      await reference.delete();
     } catch (e) {
       throw Exception(e.toString());
     }

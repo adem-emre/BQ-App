@@ -9,8 +9,8 @@ part of '../books_home_view.dart';
                                           return DeleteDialog(
                                               message:
                                                   AppStrings.deleteBookQuest,
-                                              onDelete: () {
-                                                context
+                                              onDelete: () async {
+                                                await context
                                                     .read<BooksHomeCubit>()
                                                     .deleteBook(
                                                         context

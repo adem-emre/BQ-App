@@ -34,10 +34,10 @@ class EditBookCubit extends Cubit<EditBookState> {
     try {
       if (bookImageFile != null) {
         if (book.imageUrl != null) {
-          await _storageHelper.editFile(book.imageUrl!, bookImageFile!);
+          imageUrl =
+              await _storageHelper.editFile(book.imageUrl!, bookImageFile!);
         } else {
-           imageUrl =
-              await _storageHelper.uploadFile(userId, bookImageFile!);
+          imageUrl = await _storageHelper.uploadFile(userId, bookImageFile!);
         }
       }
 
