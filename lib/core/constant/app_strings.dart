@@ -1,51 +1,52 @@
 class AppStrings {
-  static const String welcomeStr = "Hoşgeldin";
-  static const String loginStr = "Giriş";
-  static const String logoutStr = "Çıkış Yap";
+  static const String welcomeStr = "Welcome";
+  static const String loginStr = "Login";
+  static const String logoutStr = "Sign Out";
   static const String mailStr = "Mail";
-  static const String passwordStr = "Şifre";
-  static const String registerStr = "Kayıt Ol";
-  static const String nameStr = "Ad";
-  static const String surnameStr = "Soyad";
-  static const String forgotPasswordStr = "Şifreni mi Unuttun?";
-  static const String noAccountStr = "Hesabın yok mu? Kayıt Ol";
-  static const String resetPasswordStr = "Şifremi Sıfırla";
-  static const String alreadyHaveAccountStr = "Zaten bir hesabım var";
-  static const String backToLoginStr = "Giriş Sayfasına Dön";
-  static const String booksStr = "Kitaplar";
-  static const String editBookStr = "Kitap Düzenle";
-  static const String addBookStr = "Kitap Ekle";
-  static const String bookNameStr = "Kitap Adı";
-  static const String authorStr = "Yazar";
-  static const String pageCountStr = "Sayfa Sayısı";
-  static const String readPageCountStr = "Okunan Sayfa Sayısı";
-  static const String addStr = "Ekle";
-  static const String editStr = "Düzenle";
-  static const String saveStr = "Kaydet";
-  static const String pageNumberStr = "Sayfa Numarası";
-  static const String pageNumberQuestStr = "Kaçıncı Sayfadasın?";
-  static const String deleteStr = "Sil";
+  static const String passwordStr = "Password";
+  static const String registerStr = "Register";
+  static const String nameStr = "First Name";
+  static const String surnameStr = "Last Name";
+  static const String forgotPasswordStr = "Forgot Password";
+  static const String noAccountStr = "Don't have an account? Register";
+  static const String resetPasswordStr = "Reset Password";
+  static const String alreadyHaveAccountStr = "I already have an account";
+  static const String backToLoginStr = "Back to login";
+  static const String booksStr = "Books";
+  static const String editBookStr = "Edit Book";
+  static const String addBookStr = "Add Book";
+  static const String bookNameStr = "Book Name";
+  static const String authorStr = "Author";
+  static const String pageCountStr = "Page Count";
+  static const String readPageCountStr = "Read Page Count";
+  static const String addStr = "Add";
+  static const String editStr = "Edit";
+  static const String saveStr = "Save";
+  static const String pageNumberStr = "Page Number";
+  static const String pageNumberQuestStr = "Page Number You Are On";
+  static const String deleteStr = "Delete";
   static const String deleteBookQuest =
-      "Bu kitabı silmek istediğine emin misin?";
+      "Are you sure you want to delete this book?";
   static const String deleteQuoteQuest =
-      "Bu alıntıyı silmek istediğine emin misin?";
-  static const String cancelStr = "İptal";
-  static const String quoteStr = "Alıntı";
-  static const String invalidMail = "Geçersiz Mail";
-  static const String canNotBeEmpty = "Bu alan boş bırakılamaz";
-  static const String invalidPassword = "Şifre en az 6 karakterden oluşmalıdır";
+      "Are you sure you want to delete this quote?";
+  static const String cancelStr = "Cancel";
+  static const String quoteStr = "Quote";
+  static const String invalidMail = "Invalid mail";
+  static const String canNotBeEmpty = "This field can not be empty";
+  static const String invalidPassword =
+      "Password must be at least 6 characters";
 
-  static const String registerSuccessMsg = "Kayıt işlemi başarıyla tamamlandı";
+  static const String registerSuccessMsg = "Register is successful";
 
   static const String resetPasswordMailSentMsg =
-      "Şifre sıfırlama maili gönderildi";
+      "Reset password mail is sent to your mail";
 
   static const String invalidReadPageCount =
-      "Okunan sayfa sayısı, kitabın sayfa sayısından büyük olamaz";
+      "The number of pages read cannot be greater than the number of pages in the book";
 
-  static const String noQuotes = "Henüz bir alıntı eklenmemiş";
+  static const String noQuotes = "No quotes have been added yet";
 
-  static const String copiedToClipboard = "Panoya Kopyalandı";
+  static const String copiedToClipboard = "Copied to clipboard";
 
   static const String bqHashtag = "BQ";
   static const String appName = "BQ";

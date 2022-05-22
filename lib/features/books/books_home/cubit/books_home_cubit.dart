@@ -37,7 +37,6 @@ class BooksHomeCubit extends Cubit<BooksHomeState> {
       emit(ReadPagesEditSuccess());
       fetchBooks(userId);
     } catch (e) {
-      print("Hata oluştu: $e");
       emit(ReadPagesEditError(message: e.toString()));
     }
   }

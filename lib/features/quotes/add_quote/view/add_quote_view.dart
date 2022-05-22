@@ -5,7 +5,6 @@ import 'package:bq_app/core/constant/app_strings.dart';
 import 'package:bq_app/core/style/app_text_style.dart';
 import 'package:bq_app/core/widgets/custom_button.dart';
 import 'package:bq_app/core/widgets/custom_text_form.dart';
-import 'package:bq_app/features/books/add_book/cubit/add_book_cubit.dart';
 import 'package:bq_app/features/quotes/add_quote/cubit/add_quote_cubit.dart';
 import 'package:bq_app/features/quotes/quotes_list/cubit/quotes_list_cubit.dart';
 import 'package:bq_app/features/quotes/widgets/dialog_close_button.dart';
