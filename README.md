@@ -1,5 +1,5 @@
 # BQ App
-With this app you can store book quotes. And you can also keep track of which page you stayed on
+With this app you can store and share book quotes. And you can also keep track of which page you stayed on
 
 ## Setup
 
